@@ -20,8 +20,24 @@
 </head>
 
 <body>
+	
 
 	{% block header %}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
+	{% if messages %}
+		{% for m in messages %}
+			<br>
+			<br>
+			<br>
+			<script>
+				Swal.fire({
+					"title": "Felicitaciones",
+					"text": "{{m}}"
+				})
+			</script>
+		{% endfor %}
+	{% endif %}
 	<header>
 		<nav class="navbar navbar-dark bg-dark fixed-top" id="menu">
 			<div class="container-fluid">
@@ -55,6 +71,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'agregar_producto' %}">agregar producto</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'listar_productos' %}">listar producto</a>
+							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 									aria-expanded="false">
@@ -74,6 +93,7 @@
 			</div>
 		</nav>
 	</header>
+
 	<section>
 	{% endblock %}
 
