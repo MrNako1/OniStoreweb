@@ -1,0 +1,94 @@
+/*principal*/
+*::after,
+*::before,
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*logo*/
+.logo{
+    width: 70px;
+    height: 70px;
+    
+}
+/*Items*/
+body{
+    margin:10px;
+    max-width:1200vh;
+    font-family: "Lato";
+    color: #333;
+    padding: 30px;
+}
+
+img{
+    max-width: 100%;
+}
+
+/*Head*/
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+
+
+/*main¨*/
+
+/* .container{
+    gap: 20px;
+} */
+.item{
+    border-radius: 10px;
+    margin: 20px;
+
+}
+
+.item:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 20);
+    transition: all 0.3s ease-in-out;
+    
+}
+
+
+.info-producto{
+    padding: 15px 30px;
+}
+
+.item img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    transition: all .5s;
+}
+
+.item:hover img{
+    transform: scale(1.2);
+}
+
+.item figure{
+    overflow: hidden;
+}
+
+.info-producto{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price{
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.info-producto button{
+    border: none;
+    background: none;
+    background-color:black;
+    color: white;
+    padding: 15px 10px;
+    cursor: pointer;
+}
