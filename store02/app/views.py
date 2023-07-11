@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Productos, Carrito
-from .forms import ContactoForm, ProductoForm, AgregarCarrito
+from .forms import ContactoForm, ProductoForm, AgregarCarrito,CustomUserCreationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 # Create your views here.
@@ -46,7 +48,7 @@ def ultimouser(request):
 def iniciosesion(request):
     return render(request,'app/iniciosesion.html')
 
-
+@permission_required('app.add_prodcuto')
 def agregar_producto(request):
     data = {
         'form':ProductoForm()
@@ -66,6 +68,7 @@ def agregar_producto(request):
 def prueba(request):
     return render(request, 'app/prueba.html')
 
+@permission_required('app.view_prodcuto')
 def listar_productos(request):
     productos = Productos.objects.all()
 
@@ -74,6 +77,7 @@ def listar_productos(request):
         }
     return render(request, 'app/newproducto/listar.html', data)
 
+@permission_required('app.change_prodcuto')
 def modificar_producto(request, id):
     producto = get_object_or_404(Productos, id=id)
 
@@ -91,6 +95,7 @@ def modificar_producto(request, id):
 
     return render(request, 'app/newproducto/modificar.html', data)
 
+@permission_required('app.delete_prodcuto')
 def eliminar_producto(request, id):
     producto = get_object_or_404(Productos, id=id)
     producto.delete()
@@ -121,3 +126,17 @@ def limpiar_carrito(request):
     messages.success(request, "Compra exitosa, Muchas Gracias! :)")
     return redirect(to='carrito')
 #### ZZZZZZZZZZZZZ
+def registron(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"],password=formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request, "Te has registrado correctamente")
+            return redirect(to="home")
+        data["form"] = formulario
+    return render(request, 'registration/registron.html', data)

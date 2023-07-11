@@ -14,7 +14,9 @@ from .views import (
     agregar_carrito,
     eliminar_producto_carrito,
     limpiar_carrito,
+    registron,
     )
+
 
 urlpatterns = [
     path('', home, name="home"),
@@ -30,5 +32,6 @@ urlpatterns = [
     path('eliminar-producto/<id>/', eliminar_producto, name="eliminar_producto"),
     path('eliminar-producto-carrito/<id>/', eliminar_producto_carrito, name="eliminar_producto_carrito"),
     path('agregar_carrito/', agregar_carrito, name='agregar_carrito'),
-    path('limpiar_carrito/', limpiar_carrito, name='limpiar_carrito')
+    path('limpiar_carrito/', limpiar_carrito, name='limpiar_carrito'),
+    path('registron/',registron,name="registron"),
 ]
