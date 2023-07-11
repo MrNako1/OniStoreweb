@@ -17,7 +17,7 @@ $(document).ready(function(){
     $("#enviar").click(function(){
         var contra="";
         contra = $("#contra").val();
-        if (contra.length != 6){
+        if (contra.length <= 0){
             $(".error2").show();
         }else{
             $(".error2").hide();

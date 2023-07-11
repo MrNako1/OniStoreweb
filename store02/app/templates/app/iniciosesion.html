@@ -10,13 +10,13 @@
     <div class="form-body">
 
         <img src="{% static 'app/imagen/219983.png'%}" alt="user-login">
-        <p class="text">Bienvenido Usuario</p>
+        <p class="text">Centro de Ayuda</p>
         <form class="login-form">
             <input type="text" placeholder=" ingrese un correo " id="nombre" name="nombre">
             <span class="error"> Porfavor Ingrese un correo valido debe contener una (@) y un  (.)!!!</span>
-            <input type="Password" placeholder="Contraseña" id="contra" name="contra">
-            <span class="error2">  La contraseña debe contener 6 Caracteres</span>
-            <button type="button" id="enviar" name="enviar" onclick="validar()">Inicio Sesion</button>
+            <input type="text" placeholder="Tipo de Ayuda" id="contra" name="contra">
+            <span class="error2"> ingrese el tipo de ayuda</span>
+            <button type="button" id="enviar" name="enviar" onclick="validar()">Enviar</button>
         </form>
     </div>
 

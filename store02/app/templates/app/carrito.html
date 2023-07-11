@@ -14,6 +14,7 @@
             <tr>
                 <th>nombre</th>
                 <th>precio</th>
+                <th>imagen</th>
 
             </tr>
             
@@ -21,6 +22,7 @@
             <tr>
                 <td>{{ p.nombre | title }}</td>
                 <td>${{ p.precio | intcomma }}</td>
+
 
                 </td>
                 <td>
@@ -31,7 +33,7 @@
             {%endfor%}
         </table>
         <p>Total: ${{total|intcomma}}</p>
-        <a href="{% url 'limpiar_carrito' %}"<div>Comprar</div></a>
+        <a href="{% url 'limpiar_carrito' %}"class="btn btn-success " <div>Comprar</div></a>
         
         {% endblock %}
 
