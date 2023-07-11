@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Productos
-from .forms import ContactoForm, ProductoForm
+from .models import Productos, Carrito
+from .forms import ContactoForm, ProductoForm, AgregarCarrito
 from django.contrib import messages
 
 
@@ -17,7 +17,14 @@ def productos(request):
     return render(request,'app/productos.html',data)
 
 def carrito(request):
-    return render(request,'app/carrito.html')
+    productos = Carrito.objects.all()
+    precios = Carrito.objects.values_list('precio', flat=True)
+    total_sum=sum(precios)
+    data = {
+        'productos' : productos,
+        'total': total_sum
+        }
+    return render(request,'app/carrito.html',data)
 
 def registro(request):
     data ={
@@ -90,4 +97,27 @@ def eliminar_producto(request, id):
     messages.success(request, "eliminado correctamente")
 
     return redirect(to="listar_productos") 
-    
+
+def agregar_carrito(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+
+        my_instance = Carrito(
+            nombre=nombre,
+            precio=precio,
+        )
+        my_instance.save()
+        return redirect('/carrito/')
+    return render(request, 'app\carrito.html')
+def eliminar_producto_carrito(request, id):
+    producto = get_object_or_404(Carrito, id=id)
+    producto.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect(to='carrito')
+
+def limpiar_carrito(request):
+    Carrito.objects.all().delete()
+    messages.success(request, "Compra exitosa, Muchas Gracias! :)")
+    return redirect(to='carrito')
+#### ZZZZZZZZZZZZZ

@@ -18,16 +18,22 @@
 					<div class="item">
 						<figure>
 							{% if p.imagen %}
-			 				<img src="{{ p.imagen.url}}" alt="prodicto">
+			 					<img src="{{ p.imagen.url}}" alt="prodicto">
 						
 							{% endif %}			
-						</figure>
+						</figure><form method="post" action="{% url 'agregar_carrito' %}">
 						<div class="info-producto">
 							<h2>{{p.nombre| title }}</h2>
 							<p class="price">{{ p.precio | intcomma}}</p>
-							<button>añadir al carrito</button>
-						</div>
+							
+								{% csrf_token %}
+								<input style="display: none;" type="text" name="nombre" placeholder="nombre" value={{p.nombre}}>
+								<input style="display: none;" type="number" name="precio" placeholder="precio" value={{p.precio}}>
+							<button type="submit" value="Agregar al carrito" class="btn btn-primary">
+							
+						</div></form>
 					</div>
+					
 				</div>
 			</div>
 		</div>

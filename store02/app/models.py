@@ -29,7 +29,11 @@ class Contacto (models.Model):
     def __str__(self):
         return self.correo
         
-       
-    
+class Carrito(models.Model):
+    nombre = models.CharField(max_length=50)
+    precio = models.IntegerField()
+
+    def __str__(self):
+        return self.nombre
 
 
