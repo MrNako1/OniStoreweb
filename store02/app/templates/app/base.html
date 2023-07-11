@@ -68,24 +68,34 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'ultimouser' %}">Ultimos registros de usuarios</a>
 							</li>
+							{% if perms.app.add_producto %}
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'agregar_producto' %}">agregar producto</a>
 							</li>
+							{% endif %}
+							{% if perms.app.view_producto %}
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'listar_productos' %}">listar producto</a>
 							</li>
+							{% endif %}
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Cuenta</a>
-								<ul class="dropdown-menu dropdown-menu-dark">
-									<li><a class="dropdown-item" href="{% url 'iniciosesion' %}">Inicio Sesion</a>
-									</li>
-									<hr class="dropdown-divider">
-									<li><a class="dropdown-item" href="{% url 'registro' %}">Registro</a></li>
-									<li>
-									</li>
-								</ul>
+								{% if user.is_authenticated %}
+								<li>
+									<a href="{% url 'logout' %}">cerrar sesion</a>
+								</li>
+								<li>
+									<a href="#">@{{ user.username }}</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="{% url 'login' %}">Iniciar sesion</a>
+								</li>
+								<li>
+									<a href="{% url 'registron' %}">Registrate</a>
+								</li>
+								{% endif %}
+
+
 							</li>
 						</ul>
 					</div>

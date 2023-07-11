@@ -10,18 +10,21 @@
     <link rel="stylesheet" href="{% static 'app/Css/user.css' %}">
     
 
-
 {% block content %}
 	{% load static %}
   	<br>
   	<br>
   	<br>
   	<br>
- 	<div class="container">  <button onclick="search();">Ultimos usuarios registrados</button>
+ 	<div class="container">  <button onclick="search();" class="btn btn-success ">Ultimas ventas Hechas</button>
+	<br>
+	<br>
+	<br>
     <div id="users"></div></div>
+
     
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
               integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
               crossorigin="anonymous"></script>
-          <script src="js/user.js"></script> 
+          <script src="{% static 'app/js/user.js' %}"></script> 
 {% endblock %}
